@@ -1,5 +1,3 @@
-import kotlin.random.Random
-
 fun main() {
 
     fun part1(input: String): Any {

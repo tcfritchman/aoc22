@@ -3,7 +3,7 @@ fun readInput(path: String): String {
     return resource?.readText() ?: throw IllegalArgumentException("This input does not exist: $path")
 }
 
-fun printAnswer(f:() -> Any) {
+fun printAnswer(f: () -> Any) {
     val timerStart = System.currentTimeMillis()
     val answer = f()
     val timerStop = System.currentTimeMillis()
