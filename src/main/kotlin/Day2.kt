@@ -2,20 +2,32 @@ enum class RPS(val score: Int) {
     ROCK(1), PAPER(2), SCISSORS(3);
 
     fun beats(other: RPS): Boolean {
-        return ((this == ROCK && other == SCISSORS)
-                || (this == SCISSORS && other == PAPER)
-                || (this == PAPER && other == ROCK))
+        return (this.getBeats() == other)
+    }
+
+    fun getBeats(): RPS {
+        return when (this) {
+            ROCK -> SCISSORS
+            SCISSORS -> PAPER
+            PAPER -> ROCK
+        }
+    }
+
+    fun getLosesTo(): RPS {
+        return when (this) {
+            ROCK -> PAPER
+            SCISSORS -> ROCK
+            PAPER -> SCISSORS
+        }
     }
 
     companion object {
-        fun fromChoice(value: Char): RPS {
+        fun fromChar(value: Char): RPS {
             return when (value) {
                 'A', 'X' -> ROCK
                 'B', 'Y' -> PAPER
                 'C', 'Z' -> SCISSORS
-                else -> {
-                    throw IllegalArgumentException()
-                }
+                else -> throw IllegalArgumentException()
             }
         }
     }
@@ -26,23 +38,28 @@ fun main() {
 
     fun part1(input: String): Any {
         return input.split("\n").sumOf {
-            val opponentMove = RPS.fromChoice(it[0])
-            val playerMove = RPS.fromChoice(it[2])
+            val opponentMove = RPS.fromChar(it[0])
+            val playerMove = RPS.fromChar(it[2])
             if (playerMove == opponentMove) {
-                // Draw
-                3 + playerMove.score
+                playerMove.score + 3
             } else if (playerMove.beats(opponentMove)) {
-                // Win
-                6 + playerMove.score
+                playerMove.score + 6
             } else {
-                // Loss
                 playerMove.score
             }
         }
     }
 
     fun part2(input: String): Any {
-        return ""
+        return input.split("\n").sumOf {
+            val opponentMove = RPS.fromChar(it[0])
+            when (it[2]) {
+                'X' -> opponentMove.getBeats().score
+                'Y' -> opponentMove.score + 3
+                'Z' -> opponentMove.getLosesTo().score + 6
+                else -> throw IllegalArgumentException()
+            }
+        }
     }
 
     val input = readInput("input2.txt")
