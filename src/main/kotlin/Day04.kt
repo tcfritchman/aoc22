@@ -12,7 +12,7 @@ fun main() {
             .count { it[0] <= it[3] && it[1] >= it[2] }
     }
 
-    val input = readInput("input4.txt")
+    val input = readInput("input04.txt")
     printAnswer { part1(input) }
     printAnswer { part2(input) }
 }

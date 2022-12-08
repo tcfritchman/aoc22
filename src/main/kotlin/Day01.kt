@@ -13,7 +13,7 @@ fun main() {
             .sum()
     }
 
-    val input = readInput("input1.txt")
+    val input = readInput("input01.txt")
     printAnswer { part1(input) }
     printAnswer { part2(input) }
 }

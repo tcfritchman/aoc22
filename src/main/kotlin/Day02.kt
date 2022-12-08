@@ -62,7 +62,7 @@ fun main() {
         }
     }
 
-    val input = readInput("input2.txt")
+    val input = readInput("input02.txt")
     printAnswer { part1(input) }
     printAnswer { part2(input) }
 }

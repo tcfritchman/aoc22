@@ -36,7 +36,7 @@ fun main() {
         return stacks.map(ArrayDeque<Char>::first).joinToString("")
     }
 
-    val input = readInput("input5.txt")
+    val input = readInput("input05.txt")
     printAnswer { part1(input) }
     printAnswer { part2(input) }
 }
